@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# cowfortune - fortune and cowsay with a random cow
+#
+#    Copyright (C) 2012 Rodrigo Silva (MestreLion) <linux@rodrigosilva.com>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program. See <http://www.gnu.org/licenses/gpl.html>
+#
+# Inspired by Linux Mint's mint-fortune
+# https://github.com/linuxmint/mintsystem/blob/master/usr/bin/mint-fortune
+#
+# And also cowsay_random example from Debian/Ubuntu cowsay package
+# http://anonscm.debian.org/gitweb/?p=collab-maint/cowsay.git;a=blob;f=debian/cowsay_random
+
+function choose() { shift $((RANDOM % $#)); echo "$1"; } #"${@:1+(RANDOM % $#):1}"
+
+cow=$(choose "${COWPATH:-/usr/share/cowsay/cows}"/*.cow)
+
+cowbin=$(choose cowsay cowthink)
+
+if ((RANDOM % 2)); then
+	cowmode=()
+else
+	cowmode=( -$(choose b d g p s t w y) )
+fi
+
+fortune | "$cowbin" -f "$cow" "${cowmode[@]}"

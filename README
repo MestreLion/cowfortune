@@ -1,0 +1,84 @@
+cowfortune
+==========
+
+A random cow that says random cookie fortunes. Cool huh?
+
+Two of the most vital, core software of Debian infrastructure now combined!
+
+A key piece of code that belongs in your heart (and in your ~/.bashrc too).
+
+Inspired by the beloved (and sometimes hated) mint-fortune.
+
+
+Install
+-------
+
+To install, run as root:
+make install
+
+To uninstall (also as root):
+make uninstall
+
+Installs by default to /usr/local/games
+Use --prefix or --bindir to change
+
+Or, if you prefer to build a debian .DEB package:
+debuild binary && sudo dpgk --install ../cowfortune*.deb
+
+
+Requirements
+------------
+
+cowfortune requires cowsay and fortune.
+
+To install them in a Debian or debian-like system:
+sudo apt-get install cowsay fortune
+
+
+Usage
+-----
+
+No options, no fuss. Simply run:
+cowfortune
+
+... and have fun! (hey, it rhymes!)
+
+For the ultimate experience, put it in your ~/.bashrc
+Or, even better, Linux Mint style: put in /etc/bashrc
+
+
+Contributing
+------------
+
+Just clone the git repository:
+git clone https://github.com/MestreLion/cowfortune.git
+
+and start hacking!
+
+Patches are welcome, especially for items in TODO list.
+
+
+TODO
+----
+
+- Add per-user configuration at ~/.config/cowfortune
+	blacklist - do not pick these cows
+	whitelist - pick only these cows ('none' to disable cowfortune)
+- Add common options like --help and --version
+- Add some cowsay and fortune passthrough options
+
+
+License and Copyright
+---------------------
+
+Copyright (C) 2012 Rodrigo Silva (MestreLion) <linux@rodrigosilva.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
