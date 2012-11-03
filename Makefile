@@ -7,7 +7,7 @@ bindir   = $(prefix)/games
 all:
 
 install:
-	install -t $(DESTDIR)$(bindir) $(TARGET)
+	install -t '$(DESTDIR)$(bindir)' '$(TARGET)'
 
 uninstall:
-	rm -f $(DESTDIR)$(bindir)/$(TARGET)
+	rm -f '$(DESTDIR)$(bindir)/$(TARGET)'
