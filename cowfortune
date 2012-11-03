@@ -18,12 +18,9 @@
 #    along with this program. See <http://www.gnu.org/licenses/gpl.html>
 #
 # Inspired by Linux Mint's mint-fortune
-# https://github.com/linuxmint/mintsystem/blob/master/usr/bin/mint-fortune
-#
-# And also cowsay_random example from Debian/Ubuntu cowsay package
-# http://anonscm.debian.org/gitweb/?p=collab-maint/cowsay.git;a=blob;f=debian/cowsay_random
+# Some ideas from Nick Daly's cowsay_example in Debian cowsay package
 
-function choose() { shift $((RANDOM % $#)); echo "$1"; } #"${@:1+(RANDOM % $#):1}"
+function choose() { shift $((RANDOM % $#)); echo "$1"; }
 
 cow=$(choose "${COWPATH:-/usr/share/cowsay/cows}"/*.cow)
 
