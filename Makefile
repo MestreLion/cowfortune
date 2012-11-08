@@ -17,10 +17,21 @@ uninstall:
 	rm -f '$(DESTDIR)$(bindir)/$(TARGET)'
 
 dist:
-	rm -rf "$(DISTNAME)"
+	@rm -rf "$(DISTNAME)"
 	mkdir "$(DISTNAME)" && \
 	ln $(DISTFILES) "$(DISTNAME)" && \
 	tar c "$(DISTNAME)" | gzip -cn > "../$(DISTNAME).tar.gz"
 	rm -rf "$(DISTNAME)"
 
-.PHONY: all install uninstall dist
+dist-git: dist
+	@if test -n '$(DIST_GIT_ENABLE)'; then \
+		ln -s "$(DISTNAME).tar.gz" "../$(PACKAGE)_$(VERSION).orig.tar.gz" && \
+		git tag -a -m "release $(VERSION)" "upstream/$(VERSION)" && \
+		pristine-tar commit "../$(DISTNAME).tar.gz" ; \
+	else \
+		echo "dist-git target is disabled by default to avoid accidental runs."; \
+		echo "This target modifies the git reposity, creating new tags and commits."; \
+		echo "To execute it, use DIST_GIT_ENABLE make dist-git"; \
+	fi
+
+.PHONY: all install uninstall dist dist-git
