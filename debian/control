@@ -1,15 +1,21 @@
 Source: cowfortune
 Section: unknown
 Priority: extra
-Maintainer: Rodrigo Silva <linux@rodrigosilva.com>
+Maintainer: Rodrigo Silva <debian@rodrigosilva.com>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.2
-Homepage: <insert the upstream URL, if relevant>
+Homepage: https://github.com/MestreLion/cowfortune
+Vcs-Git: git://github.com/MestreLion/cowfortune.git
+Vcs-Browser: https://github.com/MestreLion/cowfortune
 #Vcs-Git: git://git.debian.org/collab-maint/cowfortune.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/cowfortune.git;a=summary
 
 Package: cowfortune
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: A random cow that says random cookie fortunes. Cool huh?
+ Two of the most vital, core software of Debian infrastructure now combined!
+ .
+ A key piece of code that belongs in your heart (and in your ~/.bashrc too).
+ .
+ Inspired by the beloved (but sometimes hated) mint-fortune.
