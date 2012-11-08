@@ -12,7 +12,8 @@ Vcs-Browser: https://github.com/MestreLion/cowfortune
 
 Package: cowfortune
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: cowsay, fortune, ${shlibs:Depends}, ${misc:Depends}
+Suggests: fortunes
 Description: A random cow that says random cookie fortunes. Cool huh?
  Two of the most vital, core software of Debian infrastructure now combined!
  .
