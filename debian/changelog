@@ -1,0 +1,5 @@
+cowfortune (0.9-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Rodrigo Silva <linux@rodrigosilva.com>  Thu, 08 Nov 2012 14:04:14 -0200
