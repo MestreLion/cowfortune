@@ -34,4 +34,4 @@ else
 	cowmode=( -$(choose b d g p s t w y) )
 fi
 
-fortune | "$cowbin" -f "$cow" "${cowmode[@]}"
+fortune | "$cowbin" -f "$cow" "${cowmode[@]}" && echo
