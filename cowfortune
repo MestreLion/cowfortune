@@ -20,7 +20,7 @@
 # Inspired by Linux Mint's mint-fortune
 # Some ideas from Nick Daly's cowsay_example in Debian cowsay package
 
-VERSION=0.9
+VERSION=0.9.1
 
 function choose() { shift $((RANDOM % $#)); echo "$1"; }
 
@@ -34,4 +34,4 @@ else
 	cowmode=( -$(choose b d g p s t w y) )
 fi
 
-fortune | "$cowbin" -f "$cow" "${cowmode[@]}"
+fortune | "$cowbin" -f "$cow" "${cowmode[@]}" && echo

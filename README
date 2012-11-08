@@ -22,6 +22,10 @@ make uninstall
 Installs by default to /usr/local/games
 Use --prefix or --bindir to change
 
+Make sure usr/local/games is in your $PATH! As of Sep 2012, this is not the
+default for Debian/Ubuntu systems, so it must be manually added.
+Use either /etc/bash_profile (for all users) or ~/.profile
+
 Or, if you prefer to build a debian .DEB package:
 debuild binary && sudo dpgk --install ../cowfortune*.deb
 
@@ -45,6 +49,8 @@ cowfortune
 
 For the ultimate experience, put it in your ~/.bashrc
 Or, even better, Linux Mint style: put in /etc/bashrc
+
+If it does not work, check your $PATH and read the Install section again ;)
 
 
 Contributing
