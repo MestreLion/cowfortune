@@ -20,7 +20,7 @@
 # Inspired by Linux Mint's mint-fortune
 # Some ideas from Nick Daly's cowsay_example in Debian cowsay package
 
-VERSION=0.9
+VERSION=0.9.1
 
 function choose() { shift $((RANDOM % $#)); echo "$1"; }
 
