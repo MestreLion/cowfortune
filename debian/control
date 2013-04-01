@@ -1,5 +1,5 @@
 Source: cowfortune
-Section: unknown
+Section: games
 Priority: extra
 Maintainer: Rodrigo Silva <debian@rodrigosilva.com>
 Build-Depends: debhelper (>= 8.0.0)
@@ -12,9 +12,9 @@ Vcs-Browser: https://github.com/MestreLion/cowfortune
 
 Package: cowfortune
 Architecture: any
-Depends: cowsay, fortune, ${shlibs:Depends}, ${misc:Depends}
+Depends: cowsay, fortune, ${misc:Depends}
 Suggests: fortunes
-Description: A random cow that says random cookie fortunes. Cool huh?
+Description: Random cow saying random cookie fortunes. Cool huh?
  Two of the most vital, core software of Debian infrastructure now combined!
  .
  A key piece of code that belongs in your heart (and in your ~/.bashrc too).
