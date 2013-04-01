@@ -24,14 +24,14 @@ dist:
 	rm -rf "$(DISTNAME)"
 
 dist-git: dist
-	@if test -n '$(DIST_GIT_ENABLE)'; then \
+	@if test -n '$(ENABLE_GIT)'; then \
 		ln -s "$(DISTNAME).tar.gz" "../$(PACKAGE)_$(VERSION).orig.tar.gz" && \
 		git tag -a -m "release $(VERSION)" "upstream/$(VERSION)" && \
 		pristine-tar commit "../$(DISTNAME).tar.gz" ; \
 	else \
 		echo "dist-git target is disabled by default to avoid accidental runs."; \
 		echo "This target modifies the git reposity, creating new tags and commits."; \
-		echo "To execute it, use DIST_GIT_ENABLE make dist-git"; \
+		echo "To execute it, use ENABLE_GIT make dist-git"; \
 	fi
 
 .PHONY: all install uninstall dist dist-git
