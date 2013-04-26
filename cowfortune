@@ -22,6 +22,8 @@
 
 VERSION=0.9.1
 
+configdir=${XDG_CONFIG_HOME:-"$HOME/.config"}/cowfortune
+
 function choose() { shift $((RANDOM % $#)); echo "$1"; }
 
 cow=$(choose "${COWPATH:-/usr/share/cowsay/cows}"/*.cow)
@@ -33,5 +35,9 @@ if ((RANDOM % 2)); then
 else
 	cowmode=( -$(choose b d g p s t w y) )
 fi
+
+# Save chosen cow
+mkdir -p "$configdir"
+echo "$(basename "${cow%.*}")" > "$configdir"/lastcow
 
 fortune | "$cowbin" -f "$cow" "${cowmode[@]}" && echo
