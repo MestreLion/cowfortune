@@ -25,22 +25,34 @@ VERSION=0.9.1
 cowpath=${COWPATH:-/usr/share/cowsay/cows}
 configdir=${XDG_CONFIG_HOME:-"$HOME/.config"}/cowfortune
 lastcowfile="$configdir"/lastcow
+blacklistfile="$configdir"/blacklist
 
 function choose() { shift $((RANDOM % $#)); echo "$1"; }
 
 while (( $# )); do
 	case "$1" in
-	--lastcow ) read -r lastcow < "$lastcowfile" ;;
+	-l|--lastcow ) read -r cow < "$lastcowfile" ;;
+	-bl|--blacklist-last )
+		read -r lastcow < "$lastcowfile"
+		echo "$lastcow" >> "$blacklistfile"
+		echo "Last used cow '$lastcow' added to blacklist"
+		exit
+	;;
 	esac
 	shift
 done
 
-if [[ "$lastcow" ]]; then
-	cow=${cowpath}/${lastcow}.cow
-else
-	cow=$(choose "$cowpath"/*.cow)
+if [[ -z "$cow" ]]; then
+	cows=()
+	while IFS='' read -r -d '' cow; do
+		cows+=( "$cow" )
+	done < <(grep -zvwf "$blacklistfile" \
+		<(cd "$cowpath"; files=(*.cow); printf '%s\0' "${files[@]%.cow}"))
+
+	cow=$(choose "${cows[@]}")
 fi
 
+cow=${cowpath}/${cow}.cow
 cowbin=$(choose cowsay cowthink)
 
 if ((RANDOM % 2)); then
