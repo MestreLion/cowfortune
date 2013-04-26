@@ -22,11 +22,24 @@
 
 VERSION=0.9.1
 
+cowpath=${COWPATH:-/usr/share/cowsay/cows}
 configdir=${XDG_CONFIG_HOME:-"$HOME/.config"}/cowfortune
+lastcowfile="$configdir"/lastcow
 
 function choose() { shift $((RANDOM % $#)); echo "$1"; }
 
-cow=$(choose "${COWPATH:-/usr/share/cowsay/cows}"/*.cow)
+while (( $# )); do
+	case "$1" in
+	--lastcow ) read -r lastcow < "$lastcowfile" ;;
+	esac
+	shift
+done
+
+if [[ "$lastcow" ]]; then
+	cow=${cowpath}/${lastcow}.cow
+else
+	cow=$(choose "$cowpath"/*.cow)
+fi
 
 cowbin=$(choose cowsay cowthink)
 
@@ -38,6 +51,6 @@ fi
 
 # Save chosen cow
 mkdir -p "$configdir"
-echo "$(basename "${cow%.*}")" > "$configdir"/lastcow
+echo "$(basename "${cow%.*}")" > "$lastcowfile"
 
 fortune | "$cowbin" -f "$cow" "${cowmode[@]}" && echo
